@@ -32,3 +32,5 @@ match category:
     case "5":
         income_source = "Other Sources"
 print(income_source, income_amount)
+
+# todo:  Implement category vlaidation

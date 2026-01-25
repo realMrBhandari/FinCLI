@@ -1,3 +1,3 @@
 print(
-    "===== FinCLI Finance Menu  ===== \n 1. Add income \n 2. Add expense \n 3. View all transactions \n 4. View monthly summary \n 5. Exit \n"
+    "===== FinCLI Finance Menu  ===== \n 1. Income Records\n 2. Expense Records\n 3. View all transactions \n 4. Monthly Spends Summary \n 5. Exit \n"
 )
