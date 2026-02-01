@@ -9,6 +9,10 @@ if not income_amount.isdigit():
         income_amount = input("Re-enter your income, make sure input is numeric: \t")
 # todo: Implement validation for negative & 0 inputs as well
 
+# todo: A type conversion is needed here, the user input which is string is needed to be converted into a numeric type once input for income amount is validated
+
+# todo: implement the industrial level of recording money, i guess money is not recorded in floating points, but whatever system it is money will be stored in that method.
+
 # ! Income Source Section
 income_source = None
 print(
