@@ -31,3 +31,6 @@ match category:
     case "5":
         income_source = input("Please specify your source:\t")
         # TODO ONE MORE CONDITION SHOULD BE IMPLEMENTED HERE WHERE THERE SHOULD BE A DEFAULT CASE IN CASE USER DOES NOT PROVIDE ANY INCOME SOURCE
+
+
+# ! All this can be wrapped in a function and and can be called over and over again from the FinCLI menu itself
