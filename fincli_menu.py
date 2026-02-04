@@ -1,3 +1,5 @@
 print(
-    "===== FinCLI Finance Menu  ===== \n 1. Income Records\n 2. Expense Records\n 3. View all transactions \n 4. Monthly Spends Summary \n 5. Exit \n"
+    """\033[1;32m===========================================================================
+                             FinCLI Finance Mneu
+===========================================================================\033[0m\n 1. Income Records\n 2. Expense Records\n 3. View all transactions \n 4. Monthly Spends Summary \n 5. Exit \n"""
 )
