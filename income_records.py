@@ -5,9 +5,8 @@ print(
                              YOUR INCOME RECORDS
 ===========================================================================\033[0m\v"""
 )
-income_amount = input(
-    "Please input your income amount (*should be positive and numeric): \t"
-)
+print("*income amount should be positive and numeric")
+income_amount = input("Please input your income amount : \t")
 while not income_amount.isdigit():
     print("\033[31mAttention User! Your input was invalid.\033[0m")
     income_amount = input("Only positive and numeric input allowed. Try again: \t")
@@ -36,8 +35,13 @@ match category:
     case "4":
         income_source = "Pocket Money"
     case "5":
-        income_source = input("Please specify your source:\t")
+        income_source = (
+            input("Please specify your source:\t") or "Other sources"
+        )  # or <value> allows us to define a default value with input statement in case user submits blank value.
         # TODO ONE MORE CONDITION SHOULD BE IMPLEMENTED HERE WHERE THERE SHOULD BE A DEFAULT CASE IN CASE USER DOES NOT PROVIDE ANY INCOME SOURCE
 
+print(
+    f"\vYou earned \033[33m{income_amount} \033[0mfrom \033[33m{income_source}\033[0m, use it wisely."
+)
 
 # ! All this can be wrapped in a function and and can be called over and over again from the FinCLI menu itself
