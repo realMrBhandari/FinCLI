@@ -11,9 +11,9 @@ def income_recorder():
     while not income_amount.isdigit():
         print("\033[31mAttention User! Your input was invalid.\033[0m")
         income_amount = input("Only positive and numeric input allowed. Try again: \t")
-    # todo: Implement validation for negative & 0 inputs as well
+    # todo: A type conversion is needed here, the user input which is string is needed to be converted into a numeric type once input for income amount is validated and implement expection handeling.
 
-    # todo: A type conversion is needed here, the user input which is string is needed to be converted into a numeric type once input for income amount is validated.
+    # todo: Implement validation for negative & 0 inputs as well
 
     # todo: implement the industrial level of recording money, i guess money is not recorded in floating points, but whatever system it is money will be stored in that method.
 
