@@ -17,7 +17,7 @@ def income_recorder():
         income_amount = input("Only positive and numeric input allowed. Try again: \t")
 
     income_amount = int(input_income)
-    # !================     REFACTORING REGION  ================================================
+    # !================     REFACTORING REGION  ===========================================
 
     # ? Income Source Section
     income_source = None
