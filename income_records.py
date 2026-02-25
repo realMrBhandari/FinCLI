@@ -25,8 +25,7 @@ def income_recorder():
         "\n=== Please Enter Your Income Source ===\n1. Business \n2. Freelancing\n3. Salary \n4. Pocket Money \n5. Others "
     )
     category = input("Please specify your income source: \t")
-    valid_inputs = ["1", "2", "3", "4", "5"]
-    while category not in valid_inputs:
+    while category not in ["1", "2", "3", "4", "5"]:
         category = input("\033[31mInvalid input. Try again:\033[0m\t")
     match category:
         case "1":
