@@ -1,5 +1,6 @@
-# ! Input Amount Code
-# print("=== Your Income Records ===")
+import module_floatChk
+
+
 def income_recorder():
     print(
         """\033[1;32m===========================================================================
@@ -8,17 +9,15 @@ def income_recorder():
     )
     # ? Income recording section
     # !================     REFACTORING REGION  ================================================
-    print("*income amount should be positive and numeric")
+    print("*input should be positive and numeric")
     input_income = input("Please input your income amount : \t")
-    # todo: Implement trype conversion to float here and make sure the it is in two decimal points i.e in indian decimal system for recording monitoary value, also implement exception handling here so in case user passes some non numeric input here then the program should not crash while input get's converted into float and rather ask user again for valid numeric input and once float conversion is successfull the programme should moveon. So far this is the biggest obstacle for me in this code, I will proccede with integer input as of now and later convert it to floating type
 
-    while not input_income.isdigit():
+    while not module_floatChk.isItFloat(input_income):
         print("\033[31mAttention User! Your input was invalid.\033[0m")
-        income_amount = input("Only positive and numeric input allowed. Try again: \t")
+        input_income = input("Only positive and numeric input allowed. Try again: \t")
 
-    income_amount = int(input_income)
+    income_amount = float(input_income)
     # !================     REFACTORING REGION  ===========================================
-
     # ? Income Source Section
     income_source = None
     print(
@@ -40,9 +39,7 @@ def income_recorder():
             income_source = (
                 input("Please specify your source:\t") or "Other sources"
             )  # ? or <value> allows us to define a default value with input statement in case user submits blank value.
+    # ! To implement Recording these information to a database for transaction record and keeping track of balance
     print(
-        f"\vYou earned \033[33m{income_amount} \033[0mfrom \033[33m{income_source}\033[0m, use it wisely."
+        f"\vRecorded income amount of \033[33m{income_amount} \033[0mfrom \033[33m{income_source}\033[0m."
     )
-
-
-# ! All this can be wrapped in a function and and can be called over and over again from the FinCLI menu itself
