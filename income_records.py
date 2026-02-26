@@ -12,11 +12,13 @@ def income_recorder():
     print("*input should be positive and numeric")
     input_income = input("Please input your income amount : \t")
 
-    while not module_floatChk.isItFloat(input_income):
+    # ? Short circuit is preventing programme from crashing here.
+    while (not module_floatChk.isItFloat(input_income)) or float(input_income) < 0:
         print("\033[31mAttention User! Your input was invalid.\033[0m")
         input_income = input("Only positive and numeric input allowed. Try again: \t")
 
     income_amount = float(input_income)
+
     # !================     REFACTORING REGION  ===========================================
     # ? Income Source Section
     income_source = None
