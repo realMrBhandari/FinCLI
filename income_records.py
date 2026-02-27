@@ -17,7 +17,7 @@ def income_recorder():
         print("\033[31mAttention User! Your input was invalid.\033[0m")
         input_income = input("Only positive and numeric input allowed. Try again: \t")
 
-    income_amount = float(input_income)
+    income_amount = round(float(input_income), 2)
 
     # !================     REFACTORING REGION  ===========================================
     # ? Income Source Section
