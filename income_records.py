@@ -10,7 +10,7 @@ def income_recorder():
     # ? Income recording section
     # !================     REFACTORING REGION  ================================================
     print("*input should be positive and numeric")
-    input_income = input("Please input your income amount : \t")
+    input_income = input("Please input your income amount:\t")
 
     # ? Short circuit is preventing programme from crashing here.
     while (not module_floatChk.isItFloat(input_income)) or float(input_income) < 0:
@@ -41,7 +41,14 @@ def income_recorder():
             income_source = (
                 input("Please specify your source:\t") or "Other sources"
             )  # ? or <value> allows us to define a default value with input statement in case user submits blank value.
+    transaction_location = (
+        input("Enter the account in which the income was credited:\t") or "bank"
+    )
+    # todo : implement transaction location feture as well, to differentiate where money was deposited to and where it was withdrawn from: transactionLocation, and implement a networth like feature showing where all money resides and for montly spends and transaction summary also add columns to show remaining balanaces in all accounts.
+
+    # todo: implement date of transaction recodring as well, with a default and custom date feature.
+
     # ! To implement Recording these information to a database for transaction record and keeping track of balance
     print(
-        f"\vRecorded income amount of \033[33m{income_amount} \033[0mfrom \033[33m{income_source}\033[0m."
+        f"\vRecorded income amount of \033[33m{income_amount} \033[0mfrom \033[33m{income_source}\033[0m recieved in \033[33m{transaction_location}\033[0m account."
     )
