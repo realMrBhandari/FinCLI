@@ -1,3 +1,5 @@
+# FinCLI - A Python based CLI application for tracking personal expenses
+
 **FinCLI** is a cross-platform personal finance tracking application that runs entirely in the terminal. Written in Python, it allows users to record and track where their money comes from and where it goes, helping them make informed financial decisions and plan their finances more effectively.
 
 **FinCLI** enables users to record and categorize financial transactions while attaching useful metadata such as the **source account**, **transaction date**, and **notes**. This makes it easier to remember the context behind every transaction and maintain a clear financial history.
