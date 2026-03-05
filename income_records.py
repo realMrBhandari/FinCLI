@@ -1,4 +1,5 @@
 import module_floatChk
+from datetime import datetime
 
 
 def income_recorder():
@@ -12,7 +13,7 @@ def income_recorder():
 ===========================================================================\033[0m\v"""
     )
     # def income_inputs():
-    # ? Income recording section
+    # # Income recording section
     # !================     REFACTORING REGION  ================================================
     print("*input should be positive and numeric")
     input_income = input("Please input your income amount:\t")
@@ -24,8 +25,7 @@ def income_recorder():
 
     income_amount = round(float(input_income), 2)
     # !================     REFACTORING REGION  ===========================================
-    # ? Income Source Section
-    income_source = None
+    # # Income Source Section
     print(
         "\n=== Please Enter Your Income Source ===\n1. Business \n2. Freelancing\n3. Salary \n4. Pocket Money \n5. Others "
     )
@@ -45,9 +45,40 @@ def income_recorder():
             income_source = (
                 input("Please specify your source:\t") or "Other sources"
             )  # ? or <value> allows us to define a default value with input statement in case user submits blank value.
+    # # Transaction metadata section
+    # ? Transaction date
+    print(
+        """=== Date of Transaction ===
+          1. Today 
+          2. Custom Date"""
+    )
+    transaction_date_metadata = input("Please provide an option: ")
+    while transaction_date_metadata not in ["1", "2"]:
+        print("Invalid Input! Please Try Again!")
+        transaction_date_metadata = input("Please provide an option b/w 1 & 2: ")
+    if transaction_date_metadata == "1":
+        transaction_date = datetime.now().date()
+    # todo: Implement a function to turn this date into DD_MM_YYYY
+    # ! Implement logic of custom date with validation and final formatting for DD-MM-YYYY
+    # // else:
+    # //     transaction_date_day = input("Please provide day of transaction: ")
+    # //     while not 31 > transaction_date_day >= 1:
+    # //         print("Invalid Input! Please Try Again!")
+    # //         transaction_date_day = input(
+    # //         "Please provide day of transaction range b/w 1 & 31: "
+    # //         )
+    # //    transaction_date_month = input("Please provide month of transaction(b/w 1 - 12 & should not be greater than current month ): ")
+    # //     while not datetime.now().date().month > transaction_date_month >= 1:
+    # //         print("Invalid Input! Please Try Again!")
+    # //         transaction_date_day = input(
+    # //        "Please provide day of transaction range should be lesser : "
+    # //         )
+    # //     transaction_date_day = input("Please provide year of transaction: ")
+    # ? transaction location
     transaction_location = (
         input("\nEnter the account in which the income was credited:\t") or "bank"
     )
+    # ? transaction location
     transaction_note = input(
         "\nAdd a note to describe your transaction (50 characters max): "
     )
@@ -59,6 +90,7 @@ def income_recorder():
 
     income_transactions["income_amount"] = income_amount
     income_transactions["income_source"] = income_source
+    income_transactions["transaction_date"] = transaction_date
     income_transactions["transaction_location"] = transaction_location
     income_transactions["transaction_note"] = transaction_note
 
@@ -70,7 +102,7 @@ def income_recorder():
 
     # ! Implement Final Table in which records will be displayed to user
     print(
-        f"\vRecorded income amount of \033[33m{income_transactions['income_amount']} \033[0mfrom \033[33m{income_transactions['income_source']}\033[0m credited in \033[33m{income_transactions['transaction_location']}\033[0m account, was done for \033[33m{income_transactions['transaction_note']}\033[0m."
+        f"\vRecorded income amount of \033[33m{income_transactions['income_amount']} \033[0mon \033[33m{income_transactions['transaction_date']} \033[0mfrom \033[33m{income_transactions['income_source']}\033[0m credited in \033[33m{income_transactions['transaction_location']}\033[0m account, was done for \033[33m{income_transactions['transaction_note']}\033[0m."
     )
 
 
