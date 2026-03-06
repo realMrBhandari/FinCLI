@@ -188,9 +188,23 @@ def income_recorder():
     # # Transaction metadata section
     # ? transaction location
     transaction_location = (
-        input("\nEnter the account in which the income was credited:\t") or "bank"
+        input(
+            "\nEnter the account in which the income was credited(20 characters max):\t"
+        )
+        or "bank"
     )
-    # ? transaction location
+    while not len(transaction_location) <= 20:
+        print(
+            "\033[31mInvalid Input! Note should be between 1 to 50 characters long, try again!\033[0m"
+        )
+        transaction_location = (
+            input(
+                "\nEnter the account in which the income was credited(20 characters max):\t"
+            )
+            or "bank"
+        )
+
+    # ? transaction note
     transaction_note = input(
         "\nAdd a note to describe your transaction (50 characters max): "
     )
