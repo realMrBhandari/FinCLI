@@ -16,6 +16,12 @@ To ensure reliable financial records, **FinCLI** performs **input validation at 
 
 You can track the development progress of **FinCLI** on the [**Trello page**](https://trello.com/b/JP2u5w9J) 
 
+## User Manual
+
+Detailed usage instructions for FinCLI can be found here:
+
+[FinCLI User Manual](FinCLI%20User%20Manual.md)
+
 ## Current Features:
 
 - Recording a valid transaction amount
