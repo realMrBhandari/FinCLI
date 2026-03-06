@@ -60,20 +60,19 @@ def income_recorder():
         transaction_date = datetime.now().date()
     # todo: Implement a function to turn this date into DD_MM_YYYY
     # ! Implement logic of custom date with validation and final formatting for DD-MM-YYYY
-    # // else:
-    # //     transaction_date_day = input("Please provide day of transaction: ")
-    # //     while not 31 > transaction_date_day >= 1:
-    # //         print("Invalid Input! Please Try Again!")
-    # //         transaction_date_day = input(
-    # //         "Please provide day of transaction range b/w 1 & 31: "
-    # //         )
-    # //    transaction_date_month = input("Please provide month of transaction(b/w 1 - 12 & should not be greater than current month ): ")
-    # //     while not datetime.now().date().month > transaction_date_month >= 1:
-    # //         print("Invalid Input! Please Try Again!")
-    # //         transaction_date_day = input(
-    # //        "Please provide day of transaction range should be lesser : "
-    # //         )
-    # //     transaction_date_day = input("Please provide year of transaction: ")
+    else:
+        # ? Transaction Year
+        transaction_date_year = input("Please provide year of transaction: ")
+        while (
+            not transaction_date_year.isnumeric() or not len(transaction_date_year) == 4
+        ) or (
+            not int(transaction_date_year) == datetime.now().date().year
+            and not int(transaction_date_year) < datetime.now().date().year
+        ):
+            print("Invalid Input! Please Try Again!")
+            transaction_date_year = input("Please provide year of transaction: ")
+        transaction_date = f"XX_XX_{transaction_date_year}"
+
     # ? transaction location
     transaction_location = (
         input("\nEnter the account in which the income was credited:\t") or "bank"
@@ -120,4 +119,4 @@ def income_recorder():
 #     if user_decision == "revert":
 #         income_inputs()
 #     else:
-#         # add the values stright into json
+#          add the values stright into json
