@@ -4,7 +4,7 @@ import sys
 print(
     """\033[1;32m===========================================================================
                              FinCLI Finance Menu
-===========================================================================\033[0m\n 1. Income Records\n 2. Expense Records\n 3. View all transactions \n 4. Monthly Spends Summary \n 5. Exit \n"""
+===========================================================================\033[0m\n 1. Income Records\n 2. Expense Records\n 3. View all transactions \n 4. Networth and All Account Summary \n 5. Monthly Sepnding Summary \n 6. Exit \n"""
 )
 navigate = input("Pick a choice:\t")
 
@@ -18,6 +18,9 @@ elif navigate == "3":
     print("\vFunctionality Under Development.")
 elif navigate == "4":
     print("\vFunctionality Under Development.")
+elif navigate == "5":
+    print("\vFunctionality Under Development.")
+    sys.exit()
 elif navigate == "5":
     print("Exiting the programme.....")
     sys.exit()
