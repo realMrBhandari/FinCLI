@@ -12,28 +12,28 @@ Even without a graphical interface, **FinCLI** still prioritizes **user experien
 
 In a world of increasingly complex interfaces, **FinCLI** embraces simplicity. It is designed for focus: **open the terminal, record the transaction, move on.**
 
-To ensure reliable financial records, **FinCLI** performs **input validation at every step**, preserving data integrity and preventing incorrect entries from affecting financial tracking and planning. 
+To ensure reliable financial records, **FinCLI** performs **input validation at every step**, preserving data integrity and preventing incorrect entries from affecting financial tracking and planning.
 
-You can track the development progress of **FinCLI** on the [**Trello page**](https://trello.com/b/JP2u5w9J) 
+You can track the development progress of **FinCLI** on the [**Trello page**](https://trello.com/b/JP2u5w9J)
 
 ## User Manual
 
 Detailed usage instructions for FinCLI can be found here:
 
-[FinCLI User Manual](FinCLI%20User%20Manual.md)
+[FinCLI User Manual](docs/manual.md)
 
 ## Current Features:
 
 - Recording a valid transaction amount
 - Categorize income sources (Business, Freelancing, Salary, etc.) to analyze your income streams.
 - Record additional transaction metadata for better tracking:
-    - Transaction date
-    - Bank account where the transaction occurred (helps track account-level balances)
-    - Transaction **notes** for future reference
+  - Transaction date
+  - Bank account where the transaction occurred (helps track account-level balances)
+  - Transaction **notes** for future reference
+- JSON-based transaction storage
 
 ## Planned Features:
 
-- JSON-based transaction storage
 - Expense recording functionality
 - Transaction history viewer
 - SQL database integration
@@ -44,5 +44,5 @@ Detailed usage instructions for FinCLI can be found here:
 ## Tech Stack:
 
 - Python
-- JSON *(planned for data storage)*
-- SQL *(planned for database support)*
+- JSON _(for data storage)_
+- SQL _(planned for database support)_

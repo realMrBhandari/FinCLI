@@ -1,4 +1,4 @@
-import income_records
+import core.income_processor as income_processor
 import sys
 
 print(
@@ -11,7 +11,7 @@ navigate = input("Pick a choice:\t")
 while navigate not in ["1", "2", "3", "4", "5"]:
     navigate = input("Your choice was invalid! Try Again:\t")
 if navigate == "1":
-    income_records.income_recorder()
+    income_processor.income_recorder()
 elif navigate == "2":
     print("\vFunctionality Under Development.")
 elif navigate == "3":

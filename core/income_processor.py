@@ -1,5 +1,5 @@
-import module_floatChk
-import transaction_recorder
+import utilities.amount_validator as amount_validator
+import utilities.transaction_logger as transaction_logger
 from datetime import datetime
 
 
@@ -20,7 +20,7 @@ def income_recorder():
     input_income = input("Please input your income amount:\t")
 
     # ? Short circuit is preventing programme from crashing here.
-    while (not module_floatChk.isItFloat(input_income)) or float(input_income) <= 0:
+    while (not amount_validator.isItFloat(input_income)) or float(input_income) <= 0:
         print("\033[31mAttention User! Your input was invalid.\033[0m")
         input_income = input("Only positive and numeric input allowed. Try again: \t")
 
@@ -223,7 +223,7 @@ def income_recorder():
     income_transactions["transaction_note"] = transaction_note
 
     ## Saving Transaction to Json
-    transaction_recorder.saveTransaction(income_transactions)
+    transaction_logger.saveTransaction(income_transactions)
 
     # ! Implement Final Table in which records will be displayed to user
 

@@ -1,4 +1,8 @@
-sandbox.py
-__pycache__/ 
-expense_testcode.py 
+# ! Specifically for folders
+sandbox/*
+
+# ! Specifically for .typefiles
+__pycache__/  
+
+# ! Specifically for individual files
 data/transactions.json
