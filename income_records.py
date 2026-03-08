@@ -1,4 +1,5 @@
 import module_floatChk
+import transaction_recorder
 from datetime import datetime
 
 
@@ -13,7 +14,7 @@ def income_recorder():
 ===========================================================================\033[0m\v"""
     )
     # def income_inputs():
-    # # Income recording section
+    ## Income recording section
     # !================     REFACTORING REGION  ================================================
     print("*input should be positive and numeric")
     input_income = input("Please input your income amount:\t")
@@ -25,7 +26,7 @@ def income_recorder():
 
     income_amount = round(float(input_income), 2)
     # !================     REFACTORING REGION  ===========================================
-    # # Income Source Section
+    ## Income Source Section
     print(
         "\n=== Please Enter Your Income Source ===\n1. Business \n2. Freelancing\n3. Salary \n4. Pocket Money \n5. Others "
     )
@@ -46,7 +47,7 @@ def income_recorder():
                 input("Please specify your source:\t") or "Other sources"
             )  # ? or <value> allows us to define a default value with input statement in case user submits blank value.
 
-    # # Transaction Date
+    ## Transaction Date
     print(
         """\n=== Date of Transaction ===
         1. Today 
@@ -57,8 +58,7 @@ def income_recorder():
         print("\033[31mAttention User! Invalid Input, try again!\033[0m")
         transaction_date_menu = input("Please provide an option b/w 1 & 2: ")
     if transaction_date_menu == "1":
-        transaction_date = datetime.now().date()
-    # todo: Implement a function to turn this date into DD_MM_YYYY
+        transaction_date = datetime.now().date().strftime("%d_%m_%Y")
     else:
         # ? Transaction Year -> year, ya to current year ke equal ho ya fir current year se lesser ho, agar input year current se jayda hai to loop karo taki correct year mil sake
         print(
@@ -185,7 +185,7 @@ def income_recorder():
                         ).strip(" ")
         transaction_date = f"{transaction_date_day.zfill(2)}_{transaction_date_month.zfill(2)}_{transaction_date_year}"
 
-    # # Transaction metadata section
+    ## Transaction metadata section
     # ? transaction location
     transaction_location = (
         input(
@@ -214,18 +214,18 @@ def income_recorder():
         )
         transaction_note = input("Add a note to describe your transaction: ")
 
+    # ? updating transaction data into income_transactions
     income_transactions["income_amount"] = income_amount
     income_transactions["income_source"] = income_source
+    income_transactions["transaction_type"] = "Income"
     income_transactions["transaction_date"] = transaction_date
     income_transactions["transaction_location"] = transaction_location
     income_transactions["transaction_note"] = transaction_note
 
-    # ! To implement Recording these information to a database for transaction record and keeping track of balance
+    ## Saving Transaction to Json
+    transaction_recorder.saveTransaction(income_transactions)
 
     # ! Implement Final Table in which records will be displayed to user
-    print(
-        f"\vRecorded income amount of \033[33m{income_transactions['income_amount']} \033[0mon \033[33m{income_transactions['transaction_date']} \033[0mfrom \033[33m{income_transactions['income_source']}\033[0m credited in \033[33m{income_transactions['transaction_location']}\033[0m account, was done for \033[33m{income_transactions['transaction_note']}\033[0m."
-    )
 
 
 # ! Decision State between user input and DB
