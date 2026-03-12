@@ -28,9 +28,9 @@ def saveTransaction(transaction):
 
     table = [
         [
-            transaction["income_amount"],
             transaction["transaction_date"],
-            transaction["income_source"],
+            transaction["transaction_category"],
+            transaction["transaction_amount"],
             transaction["transaction_location"],
             transaction["transaction_note"],
         ]
@@ -39,9 +39,9 @@ def saveTransaction(transaction):
         tabulate(
             table,
             headers=[
-                "\033[33mAmount Cr.\033[0m",
                 "\033[33mTransaction Date\033[0m",
                 "\033[33mIncome Source\033[0m",
+                "\033[33mAmount Cr.\033[0m",
                 "\033[33mAccount\033[0m",
                 "\033[33mNote\033[0m",
             ],

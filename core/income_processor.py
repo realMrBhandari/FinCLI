@@ -58,7 +58,7 @@ def income_recorder():
         print("\033[31mAttention User! Invalid Input, try again!\033[0m")
         transaction_date_menu = input("Please provide an option b/w 1 & 2: ")
     if transaction_date_menu == "1":
-        transaction_date = datetime.now().date().strftime("%d_%m_%Y")
+        transaction_date = datetime.now().date().strftime("%d-%m-%Y")
     else:
         # ? Transaction Year -> year, ya to current year ke equal ho ya fir current year se lesser ho, agar input year current se jayda hai to loop karo taki correct year mil sake
         print(
@@ -183,7 +183,7 @@ def income_recorder():
                         transaction_date_day = input(
                             "Please provide a valid Transaction Day: "
                         ).strip(" ")
-        transaction_date = f"{transaction_date_day.zfill(2)}_{transaction_date_month.zfill(2)}_{transaction_date_year}"
+        transaction_date = f"{transaction_date_day.zfill(2)}-{transaction_date_month.zfill(2)}-{transaction_date_year}"
 
     ## Transaction metadata section
     # ? transaction location
@@ -215,31 +215,12 @@ def income_recorder():
         transaction_note = input("Add a note to describe your transaction: ")
 
     # ? updating transaction data into income_transactions
-    income_transactions["income_amount"] = income_amount
-    income_transactions["income_source"] = income_source
-    income_transactions["transaction_type"] = "Income"
     income_transactions["transaction_date"] = transaction_date
+    income_transactions["transaction_category"] = income_source
+    income_transactions["transaction_type"] = "CREDIT"
+    income_transactions["transaction_amount"] = income_amount
     income_transactions["transaction_location"] = transaction_location
     income_transactions["transaction_note"] = transaction_note
 
     ## Saving Transaction to Json
     transaction_logger.saveTransaction(income_transactions)
-
-    # ! Implement Final Table in which records will be displayed to user
-
-
-# ! Decision State between user input and DB
-# def input_Write():
-#     print("Do You wish to finalise transaction ?")
-#     user_decision = input(
-#         "Type CONFIRM to finalise, else type REVERT to go back: "
-#     ).lower()
-#     while user_decision not in ["confirm", "revert"]:
-#         print("Invalid Input! Try Again !")
-#         user_decision = input(
-#             "Type CONFIRM to finalise, else type REVERT to go back: "
-#         ).lower()
-#     if user_decision == "revert":
-#         income_inputs()
-#     else:
-#          add the values stright into json
