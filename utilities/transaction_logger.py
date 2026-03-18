@@ -6,7 +6,7 @@ from tabulate import tabulate
 
 def saveTransaction(transaction):
     # ? Transaction ID for each unique transaction, so no two transacations can overlap:
-    transaction_id = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    transaction_id = datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
 
     # ? read json data for transactions
     if os.path.exists("data/transactions.json"):

@@ -58,7 +58,7 @@ def income_recorder():
         print("\033[31mAttention User! Invalid Input, try again!\033[0m")
         transaction_date_menu = input("Please provide an option b/w 1 & 2: ")
     if transaction_date_menu == "1":
-        transaction_date = datetime.now().date().strftime("%d-%m-%Y")
+        transaction_date = datetime.now().date().strftime("%Y_%m_%d")
     else:
         # ? Transaction Year -> year, ya to current year ke equal ho ya fir current year se lesser ho, agar input year current se jayda hai to loop karo taki correct year mil sake
         print(
@@ -183,8 +183,7 @@ def income_recorder():
                         transaction_date_day = input(
                             "Please provide a valid Transaction Day: "
                         ).strip(" ")
-        transaction_date = f"{transaction_date_day.zfill(2)}-{transaction_date_month.zfill(2)}-{transaction_date_year}"
-
+        transaction_date = f"{transaction_date_year}_{transaction_date_month.zfill(2)}_{transaction_date_day.zfill(2)}"
     ## Transaction metadata section
     # ? transaction location
     transaction_location = (
