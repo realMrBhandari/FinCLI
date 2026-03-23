@@ -31,18 +31,18 @@ Detailed usage instructions for FinCLI can be found here:
   - Bank account where the transaction occurred (helps track account-level balances)
   - Transaction **notes** for future reference
 - JSON-based transaction storage
+- Transaction history viewer
 
 ## Planned Features:
 
 - Expense recording functionality
-- Transaction history viewer
-- SQL database integration
 - Monthly spending summaries
 - Net-worth and balance calculation across accounts
 - Terminal User Interface (TUI)
+- SQL database integration
 
 ## Tech Stack:
 
 - Python
-- JSON _(for data storage)_
+- JSON
 - SQL _(planned for database support)_
