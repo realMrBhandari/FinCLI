@@ -1,4 +1,5 @@
 import core.income_processor as income_processor
+import core.transaction_summary as transaction_summary
 import sys
 
 print(
@@ -15,7 +16,7 @@ if navigate == "1":
 elif navigate == "2":
     print("\vFunctionality Under Development.")
 elif navigate == "3":
-    print("\vFunctionality Under Development.")
+    transaction_summary.show_transaction_statement()
 elif navigate == "4":
     print("\vFunctionality Under Development.")
 elif navigate == "5":
