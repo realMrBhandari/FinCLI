@@ -26,6 +26,8 @@ def show_transaction_statement():
         transaction_summary_table.append(transaction_table_row)
         transaction_table_row = []
 
+    # ? Sorting 2D List (transaction_summary_table, which contains all data of trasnaction to be displayed) based on date which is at index[0] hence the output comes based on chronological order
+    transaction_summary_table.sort(key=lambda x: x[0])
     # ? for printing transaction summary in a tabular format like account statement
     if len(transaction_summary_table) < 1:
         print("\033[31mIt looks like you haven't made any transactions so far.\033[0m")
