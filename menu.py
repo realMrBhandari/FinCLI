@@ -1,11 +1,12 @@
 import core.income_processor as income_processor
 import core.transaction_summary as transaction_summary
+import core.balance_overviw as balance_overviw
 import sys
 
 print(
     """\033[1;32m===========================================================================
                              FinCLI Finance Menu
-===========================================================================\033[0m\n 1. Income Records\n 2. Expense Records\n 3. View all transactions \n 4. Networth and All Account Summary \n 5. Monthly Sepnding Summary \n 6. Exit \n"""
+===========================================================================\033[0m\n 1. Record Income Transaction\n 2. Record Expense Transaction\n 3. View Transactions \n 4. Balance Overview \n 5. Monthly Sepnding Summary \n 6. Exit \n"""
 )
 navigate = input("Pick a choice:\t")
 
@@ -18,7 +19,7 @@ elif navigate == "2":
 elif navigate == "3":
     transaction_summary.show_transaction_statement()
 elif navigate == "4":
-    print("\vFunctionality Under Development.")
+    balance_overviw.financial_overview_generator()
 elif navigate == "5":
     print("\vFunctionality Under Development.")
     sys.exit()
