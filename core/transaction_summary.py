@@ -1,8 +1,8 @@
 import json
+import csv
 from tabulate import tabulate
 
 
-# todo 1: sorting transaction based on the recorded date
 # todo 2: Add export to CSV Option in this transaction summary
 # todo 3: Add graphs for transactions for showing flow
 def show_transaction_statement():
@@ -48,3 +48,30 @@ def show_transaction_statement():
                 tablefmt="simple_grid",
             )
         )
+
+    ## Export to csv functionality
+
+    csv_decision = input(
+        "\v\033[1;33mExport transaction statement to CSV? [y/n]:\033[0m "
+    ).lower()
+
+    while csv_decision not in ["y", "yes", "n", "no"]:
+        csv_decision = input(
+            "\033[31mInvalid input. Please enter 'y' or 'n':\033[0m "
+        ).lower()
+
+    if csv_decision in ["y", "yes"]:
+        header_data = [
+            "Trasnaction_Date",
+            "Trasnaction_Category",
+            "Trasnaction_Type",
+            "Trasnaction_Amount",
+            "Bank_Account",
+            "Trasnaction_Note",
+        ]
+        with open("Fincli_transaction_data.csv", "w", newline="") as csv_file:
+            writer = csv.writer(csv_file)
+            writer.writerow(header_data)
+            writer.writerows(transaction_summary_table)
+
+    print("\n\033[32mTransaction successfully exported!\033[0m\n")
