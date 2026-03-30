@@ -2,6 +2,8 @@ import utilities.amount_validator as amount_validator
 import utilities.transaction_logger as transaction_logger
 from datetime import datetime
 
+# todo: add transaction mode column as well so we can determine in analytics how we spend our money
+
 
 def income_recorder():
     #  Global Variable Zone
@@ -15,7 +17,6 @@ def income_recorder():
     )
     # def income_inputs():
     ## Income recording section
-    # !================     REFACTORING REGION  ================================================
     print("*input should be positive and numeric")
     input_income = input("Please input your income amount:\t")
 
@@ -25,7 +26,7 @@ def income_recorder():
         input_income = input("Only positive and numeric input allowed. Try again: \t")
 
     income_amount = round(float(input_income), 2)
-    # !================     REFACTORING REGION  ===========================================
+
     ## Income Source Section
     print(
         "\n=== Please Enter Your Income Source ===\n1. Business \n2. Freelancing\n3. Salary \n4. Pocket Money \n5. Others "
