@@ -2,7 +2,7 @@ import utilities.amount_validator as amount_validator
 import utilities.transaction_logger as transaction_logger
 from datetime import datetime
 
-# todo: add transaction mode column as well so we can determine in analytics how we spend our money
+# TODO 1: convert data metadata to a function module
 
 
 def income_recorder():
@@ -194,16 +194,25 @@ def income_recorder():
         or "bank"
     )
     while not len(transaction_location) <= 20:
-        print(
-            "\033[31mInvalid Input! Note should be between 1 to 50 characters long, try again!\033[0m"
-        )
+        print()
         transaction_location = (
             input(
-                "\nEnter the account in which the income was credited(20 characters max):\t"
+                "\n\033[31mAccount name must be 1–20 characters. Enter the account where income was credited:\033[0m "
             )
             or "bank"
         )
-
+    # ? transaction mode
+    transaction_mode = (
+        input("\nEnter transaction mode (e.g., Cash, Card, UPI) [max 20 chars]: \t")
+        or "-"
+    )
+    while not len(transaction_mode) <= 20:
+        transaction_mode = (
+            input(
+                "\n\033[31mInvalid input. Enter transaction mode (1–20 characters, e.g., Cash, Card, UPI):\033[0m "
+            )
+            or "—"
+        )
     # ? transaction note
     transaction_note = input(
         "\nAdd a note to describe your transaction (50 characters max): "
@@ -219,6 +228,7 @@ def income_recorder():
     income_transactions["transaction_category"] = income_source
     income_transactions["transaction_type"] = "CREDIT"
     income_transactions["transaction_amount"] = income_amount
+    income_transactions["transaction_mode"] = transaction_mode
     income_transactions["transaction_location"] = transaction_location
     income_transactions["transaction_note"] = transaction_note
 

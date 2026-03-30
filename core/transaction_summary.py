@@ -43,6 +43,7 @@ def show_transaction_statement():
                     "\033[33mCategory\033[0m",
                     "\033[33mType\033[0m",
                     "\033[33mAmount\033[0m",
+                    "\033[33mMode\033[0m",
                     "\033[33mAccount\033[0m",
                     "\033[33mNote\033[0m",
                 ],
@@ -67,6 +68,7 @@ def show_transaction_statement():
             "Trasnaction_Category",
             "Trasnaction_Type",
             "Trasnaction_Amount",
+            "Trasnaction_Mode",
             "Bank_Account",
             "Trasnaction_Note",
         ]
