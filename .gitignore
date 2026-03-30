@@ -1,8 +1,10 @@
 # ! Specifically for folders
 sandbox/*
+exports/*
 
 # ! Specifically for .typefiles
-__pycache__/  
+__pycache__/
+*.csv  
 
 # ! Specifically for individual files
 data/transactions.json
