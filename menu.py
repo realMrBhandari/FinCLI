@@ -5,9 +5,6 @@ import core.monthly_spends as monthly_spends
 import sys
 
 print(
-    #     """\033[1;32m===========================================================================
-    #                              FinCLI Finance Menu
-    # ===========================================================================\033[0m\n 1. Record Income Transaction\n 2. Record Expense Transaction\n 3. View Transactions \n 4. Balance Overview \n 5. Monthly Sepnding Summary \n 6. Exit \n"""
     """\033[1;33m===========================================================================
                              FinCLI Finance Menu			   
 ===========================================================================\n 1. Record Income Transaction\n 2. Record Expense Transaction\n 3. View Transactions \n 4. Balance Overview \n 5. Monthly Sepnding Summary \n 6. Exit \n===========================================================================\033[0m \n"""
