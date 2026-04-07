@@ -20,4 +20,30 @@ def financial_overview_generator():
             elif keys["transaction_type"] == "DEBIT":
                 total_expenses += keys["transaction_amount"]
         net_balance = round(total_income - total_expenses, 2)
-        print(f"Your current networth is {net_balance}")
+
+        print(f"Your running balance is {net_balance}")
+
+    ## Balance in Individual Bank Accounts:
+    unique_bank_accounts = set()
+    for outer_key in transactions:
+        for inner_key in transactions[outer_key]:
+            if inner_key == "transaction_location":
+                unique_bank_accounts.add(transactions[outer_key][inner_key])
+
+    bank_account_balance = {}
+
+    for x in unique_bank_accounts:
+        bank_account_balance[x] = 0.00
+
+    for outer_keys in transactions:
+        for inner_keys in transactions[outer_keys]:
+            if transactions[outer_keys][inner_keys] == "CREDIT":
+                # todo: develop dict comparing logic
+                key = transactions.get(outer_keys)
+                print(key, bank_account_balance.get(key), "CREDIT")
+            elif transactions[outer_keys][inner_keys] == "DEBIT":
+                key = transactions.get(outer_keys)
+                print(key, bank_account_balance.get(key), "DEBIT")
+
+    for x in bank_account_balance:
+        print(x, bank_account_balance[x])
