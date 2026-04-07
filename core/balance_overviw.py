@@ -35,15 +35,15 @@ def financial_overview_generator():
     for x in unique_bank_accounts:
         bank_account_balance[x] = 0.00
 
-    for outer_keys in transactions:
-        for inner_keys in transactions[outer_keys]:
-            if transactions[outer_keys][inner_keys] == "CREDIT":
-                # todo: develop dict comparing logic
-                key = transactions.get(outer_keys)
-                print(key, bank_account_balance.get(key), "CREDIT")
-            elif transactions[outer_keys][inner_keys] == "DEBIT":
-                key = transactions.get(outer_keys)
-                print(key, bank_account_balance.get(key), "DEBIT")
+    for lv1_key in transactions:
+        bank_name = transactions[lv1_key]["transaction_location"]
+        bank_txn_amount = transactions[lv1_key]["transaction_amount"]
+        bank_txn_type = transactions[lv1_key]["transaction_type"]
+        if bank_txn_type == "CREDIT":
+            if bank_name in bank_account_balance:
+                bank_account_balance[bank_name] += bank_txn_amount
+        elif bank_txn_type == "DEBIT":
+            if bank_name in bank_account_balance:
+                bank_account_balance[bank_name] -= bank_txn_amount
 
-    for x in bank_account_balance:
-        print(x, bank_account_balance[x])
+    print(bank_account_balance)
