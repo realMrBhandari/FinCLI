@@ -32,14 +32,14 @@ Detailed usage instructions for FinCLI can be found here:
   - Transaction **notes** for future reference
 - JSON-based transaction storage
 - Transaction history viewer
+- Net-worth and balance calculation across accounts
 
 ## Planned Features:
 
 - Expense recording functionality
 - Monthly spending summaries
-- Net-worth and balance calculation across accounts
-- Terminal User Interface (TUI)
 - SQL database integration
+- Terminal User Interface (TUI)
 
 ## Tech Stack:
 
