@@ -33,6 +33,7 @@ Detailed usage instructions for FinCLI can be found here:
 - JSON-based transaction storage
 - Transaction history viewer
 - Net-worth and balance calculation across accounts
+- REPL loop for keeping FinCLI session active
 
 ## Planned Features:
 
