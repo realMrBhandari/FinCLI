@@ -3,12 +3,13 @@ import core.transaction_summary as transaction_summary
 import core.balance_overviw as balance_overviw
 import core.monthly_spends as monthly_spends
 import sys
+import ui.ui_menu as ui_menu
 
-print(
-    """\033[1;33m===========================================================================
-                             FinCLI Finance Menu			   
-===========================================================================\n 1. Record Income Transaction\n 2. Record Expense Transaction\n 3. View Transactions \n 4. Balance Overview \n 5. Monthly Sepnding Summary \n 6. Exit \n===========================================================================\033[0m \n"""
-)
+# print(
+#     """\033[1;33m===========================================================================
+#                              FinCLI Finance Menu
+# ===========================================================================\n 1. Record Income Transaction\n 2. Record Expense Transaction\n 3. View Transactions \n 4. Balance Overview \n 5. Monthly Sepnding Summary \n 6. Exit \n===========================================================================\033[0m \n"""
+# )
 
 
 # ! action dispatcher, for triggering appropriate functionality based on user's choice
@@ -33,6 +34,10 @@ def trigger_action(trigger):
 
 def repl():
     while True:
+        # ? Printing FinCLI menu
+        ui_menu.rich_fincli_menu()
+
+        # ? REPL Core Logic
         navigate = input("Pick a choice (1 - 6):\t")
         while navigate not in ["1", "2", "3", "4", "5", "6"]:
             navigate = input(
