@@ -9,20 +9,39 @@ print(
                              FinCLI Finance Menu			   
 ===========================================================================\n 1. Record Income Transaction\n 2. Record Expense Transaction\n 3. View Transactions \n 4. Balance Overview \n 5. Monthly Sepnding Summary \n 6. Exit \n===========================================================================\033[0m \n"""
 )
-navigate = input("Pick a choice:\t")
 
-while navigate not in ["1", "2", "3", "4", "5", "6"]:
-    navigate = input("Your choice was invalid! Try Again:\t")
-if navigate == "1":
-    income_processor.income_recorder()
-elif navigate == "2":
-    print("\vFunctionality Under Development.")
-elif navigate == "3":
-    transaction_summary.show_transaction_statement()
-elif navigate == "4":
-    balance_overviw.financial_overview_generator()
-elif navigate == "5":
-    monthly_spends.montly_spends()
-elif navigate == "6":
-    print("Exiting the programme.....")
-    sys.exit()
+
+# ! action dispatcher, for triggering appropriate functionality based on user's choice
+def trigger_action(trigger):
+    if trigger == "1":
+        income_processor.income_recorder()
+    elif trigger == "2":
+        print("\vFunctionality Under Development.")
+    elif trigger == "3":
+        transaction_summary.show_transaction_statement()
+    elif trigger == "4":
+        balance_overviw.financial_overview_generator()
+    elif trigger == "5":
+        monthly_spends.montly_spends()
+    elif trigger == "6":
+        print("Exiting the programme.....")
+        sys.exit()
+
+
+# ! REPL loop for keeping programme persitant and maintain it's state
+
+
+def repl():
+    while True:
+        navigate = input("Pick a choice (1 - 6):\t")
+        while navigate not in ["1", "2", "3", "4", "5", "6"]:
+            navigate = input(
+                f"\033[31;1mYour choice {navigate} was invalid! Try Again: \033[0m"
+            )
+
+        trigger_action(navigate)
+
+
+# ! calling REPL loop to begin programme
+
+repl()
