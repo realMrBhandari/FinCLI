@@ -2,6 +2,7 @@ import json
 import copy
 import csv
 from tabulate import tabulate
+from utilities.exporter import export_to_csv
 
 
 # todo 1: convert export to CSV to a module
@@ -70,27 +71,38 @@ def show_transaction_statement():
 
     ## Export to csv functionality
 
-    csv_decision = input(
-        "\v\033[1;33mExport transaction statement to CSV? [y/n]:\033[0m "
-    ).lower()
+    def csv_decision(prompt):
+        while True:
+            choice = input(f"{prompt} [y/n]: ").strip().lower()
 
-    while csv_decision not in ["y", "yes", "n", "no"]:
-        csv_decision = input(
-            "\033[31mInvalid input. Please enter 'y' or 'n':\033[0m "
-        ).lower()
+            if choice in ("y", "yes"):
+                return True
+            elif choice in ("n", "no"):
+                return False
+            else:
+                print("\033[31mInvalid input. Please enter 'y' or 'n'.\033[0m")
 
-    if csv_decision in ["y", "yes"]:
+    if transactions_data and csv_decision(
+        "\033[1;33mExport transaction statement to CSV?\033[0m"
+    ):
+
         header_data = [
-            "Trasnaction_Date",
-            "Trasnaction_Category",
-            "Trasnaction_Type",
-            "Trasnaction_Amount",
-            "Trasnaction_Mode",
+            "Transaction_Date",
+            "Transaction_Category",
+            "Transaction_Type",
+            "Transaction_Amount",
+            "Transaction_Mode",
             "Bank_Account",
-            "Trasnaction_Note",
+            "Transaction_Note",
         ]
-        with open(f"exports/Fincli_transaction_data.csv", "w", newline="") as csv_file:
-            writer = csv.writer(csv_file)
-            writer.writerow(header_data)
-            writer.writerows(transactions_data)
-        print("\n\033[32mTransaction successfully exported!\033[0m\n")
+
+        success = export_to_csv(
+            data=transactions_data,
+            headers=header_data,
+            default_name="fincli_transactions.csv",
+        )
+
+        if success:
+            print("\n\033[32mTransaction successfully exported!\033[0m\n")
+        else:
+            print("\033[33mExport cancelled.\033[0m")
