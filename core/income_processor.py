@@ -1,12 +1,11 @@
 import utilities.amount_validator as amount_validator
 import utilities.transaction_logger as transaction_logger
-from datetime import datetime
-
-# TODO 1: convert data metadata to a function module
+import utilities.transaction_date_handler
+import utilities.transaction_metadata_handler
 
 
 def income_recorder():
-    #  Global Variable Zone
+
     income_transactions = (
         {}
     )  # ? dicitonary as a middlemen between userinputs and database
@@ -15,7 +14,7 @@ def income_recorder():
                              YOUR INCOME RECORDS
 ===========================================================================\033[0m\v"""
     )
-    # def income_inputs():
+
     ## Income recording section
     print("*input should be positive and numeric")
     input_income = input("Please input your income amount:\t")
@@ -29,7 +28,7 @@ def income_recorder():
 
     ## Income Source Section
     print(
-        "\n=== Please Enter Your Income Source ===\n1. Business \n2. Freelancing\n3. Salary \n4. Pocket Money \n5. Others "
+        "\nWhat is the source of this income?\n[1] Business \n[2] Freelancing\n[3] Salary \n[4] Pocket Money \n[5] Others "
     )
     category = input("Please specify your income source: \t")
     while category not in ["1", "2", "3", "4", "5"]:
@@ -49,188 +48,19 @@ def income_recorder():
             )  # ? or <value> allows us to define a default value with input statement in case user submits blank value.
 
     ## Transaction Date
-    print(
-        """\n=== Date of Transaction ===
-        1. Today 
-        2. Custom Date"""
-    )
-    transaction_date_menu = input("Please provide an option: ").strip(" ")
-    while transaction_date_menu not in ["1", "2"]:
-        print("\033[31mAttention User! Invalid Input, try again!\033[0m")
-        transaction_date_menu = input("Please provide an option b/w 1 & 2: ")
-    if transaction_date_menu == "1":
-        transaction_date = datetime.now().date().strftime("%Y_%m_%d")
-    else:
-        # ? Transaction Year -> year, ya to current year ke equal ho ya fir current year se lesser ho, agar input year current se jayda hai to loop karo taki correct year mil sake
-        print(
-            f"\033[33m*Numeric: Can only record YEAR between 2000 and {datetime.now().date().year}\033[0m"
-        )
-        transaction_date_year = input("Transaction YEAR: ").strip(" ")
-        while (
-            (
-                not transaction_date_year.isnumeric()
-                or not len(transaction_date_year) == 4
-            )
-            or (
-                not int(transaction_date_year) == datetime.now().date().year
-                and not int(transaction_date_year) < datetime.now().date().year
-            )
-            or int(transaction_date_year) < 2000
-        ):
-            print("\033[31mAttention User! Invalid Input, try again!\033[0m")
-            transaction_date_year = input(
-                "Please provide a valid Transaction Year: "
-            ).strip(" ")
+    transaction_date = utilities.transaction_date_handler.transaction_date_logger()
 
-        # ? Transaction Month; 2026 curent date -> month current month ke equal ho ya fir current month se lesser | if year < 2026 -> allow 1 - 12
-
-        if int(transaction_date_year) == datetime.now().date().year:
-            print(
-                f"\033[33m*Numeric: Can only record MONTH between 1 and current month({datetime.now().date().month})\033[0m"
-            )
-            transaction_date_month = input("Transaction MONTH: ").strip(" ")
-            while (
-                not transaction_date_month.isnumeric()
-                or not int(transaction_date_month) <= datetime.now().date().month
-            ):
-                print("\033[31mAttention User! Invalid Input, try again!\033[0m")
-                transaction_date_month = input(
-                    "Please provide a valid Transaction Month: "
-                ).strip(" ")
-        elif int(transaction_date_year) < datetime.now().date().year:
-            print(f"\033[33m*Numeric: Can only record MONTH between 1 and 12\033[0m")
-            transaction_date_month = input(
-                f"Transaction MONTH for year {transaction_date_year}: "
-            ).strip(" ")
-            while not transaction_date_month.isnumeric() or int(
-                transaction_date_month
-            ) not in range(1, 13):
-                print("\033[31mAttention User! Invalid Input, try again!\033[0m")
-                transaction_date_month = input(
-                    "Please provide a valid Transaction Month: "
-                ).strip(" ")
-        # ? Transaction Date: 31 range in [1,3,5,7,8,10,12]; 30 days in [4,6,9,11]; 2 - 28/29 based on leap year.
-        if (
-            int(transaction_date_year) == datetime.now().date().year
-            and int(transaction_date_month) == datetime.now().date().month
-        ):
-            print(
-                f"\033[33m*Numeric: Can only record DAY between 1 and {datetime.now().date().day}\033[0m"
-            )
-            transaction_date_day = input("Transaction DAY: ").strip(" ")
-            while (
-                not transaction_date_day.isnumeric()
-                or not int(transaction_date_day) <= datetime.now().date().day
-                or int(transaction_date_day) < 1
-            ):
-                print("\033[31mAttention User! Invalid Input, try again!\033[0m")
-                transaction_date_day = input(
-                    "Please provide a valid Transaction Day: "
-                ).strip(" ")
-        else:
-            if transaction_date_month in ["1", "3", "5", "7", "8", "10", "12"]:
-                print(f"\033[33m*Numeric: Can only record DAY between 1 and 31\033[0m")
-                transaction_date_day = input(
-                    f"Transaction DAY for month {datetime.now().date().month}: "
-                ).strip(" ")
-                while not transaction_date_day.isnumeric() or int(
-                    transaction_date_day
-                ) not in range(1, 32):
-                    transaction_date_day = input(
-                        "Please provide a valid Transaction Day: "
-                    ).strip(" ")
-            elif transaction_date_month in ["4", "6", "9", "11"]:
-                print("\033[33m*Numeric: Can only record DAY between 1 and 30\033[0m")
-                transaction_date_day = input(
-                    f"Transaction DAY for month {datetime.now().date().month}: "
-                ).strip(" ")
-                while (
-                    not transaction_date_day.isnumeric()
-                    or transaction_date_day not in range(1, 31)
-                ):
-                    print("\033[31mAttention User! Invalid Input, try again!\033[0m")
-                    transaction_date_day = input(
-                        "Please provide a valid Transaction Day: "
-                    ).strip(" ")
-            elif transaction_date_month == "2":
-                if (
-                    int(transaction_date_year) % 4 == 0
-                    and int(transaction_date_year) % 100 != 0
-                ) or (int(transaction_date_year) % 400 == 0):
-                    print(
-                        f"\033[33m*Numeric: Can only record DAY between 1 and 29\033[0m"
-                    )
-                    transaction_date_day = input("Transaction DAY: ").strip(" ")
-                    while not transaction_date_day.isnumeric() or int(
-                        transaction_date_day
-                    ) not in range(1, 30):
-                        print(
-                            "\033[31mAttention User! Invalid Input, try again!\033[0m"
-                        )
-                        transaction_date_day = input(
-                            "Please provide a valid Transaction Day: "
-                        ).strip(" ")
-                else:
-                    print(
-                        f"\033[33m*Numeric: Can only record DAY between 1 and 28\033[0m"
-                    )
-                    transaction_date_day = input("Transaction DAY: ").strip(" ")
-                    while not transaction_date_day.isnumeric() or int(
-                        transaction_date_day
-                    ) not in range(1, 29):
-                        print(
-                            "\033[31mAttention User! Invalid Input, try again!\033[0m"
-                        )
-                        transaction_date_day = input(
-                            "Please provide a valid Transaction Day: "
-                        ).strip(" ")
-        transaction_date = f"{transaction_date_year}_{transaction_date_month.zfill(2)}_{transaction_date_day.zfill(2)}"
     ## Transaction metadata section
-    # ? transaction location
-    transaction_location = (
-        input(
-            "\nEnter the account in which the income was credited(20 characters max):\t"
-        )
-        or "bank"
+    transaction_metadata = (
+        utilities.transaction_metadata_handler.transaction_metadata_recorder()
     )
-    while not len(transaction_location) <= 20:
-        print()
-        transaction_location = (
-            input(
-                "\n\033[31mAccount name must be 1–20 characters. Enter the account where income was credited:\033[0m "
-            )
-            or "bank"
-        )
-    # ? transaction mode
-    transaction_mode = (
-        input("\nEnter transaction mode (e.g., Cash, Card, UPI) [max 20 chars]: \t")
-        or "-"
-    )
-    while not len(transaction_mode) <= 20:
-        transaction_mode = (
-            input(
-                "\n\033[31mInvalid input. Enter transaction mode (1–20 characters, e.g., Cash, Card, UPI):\033[0m "
-            )
-            or "—"
-        )
-    # ? transaction note
-    transaction_note = input(
-        "\nAdd a note to describe your transaction (50 characters max): "
-    )
-    while len(transaction_note) > 50 or len(transaction_note) < 1:
-        print(
-            "\033[31mInvalid Input! Note should be between 1 to 50 characters long, try again!\033[0m"
-        )
-        transaction_note = input("Add a note to describe your transaction: ")
 
-    # ? updating transaction data into income_transactions
+    ## updating transaction data into income_transactions
     income_transactions["transaction_date"] = transaction_date
     income_transactions["transaction_category"] = income_source
     income_transactions["transaction_type"] = "CREDIT"
     income_transactions["transaction_amount"] = income_amount
-    income_transactions["transaction_mode"] = transaction_mode
-    income_transactions["transaction_location"] = transaction_location
-    income_transactions["transaction_note"] = transaction_note
+    income_transactions.update(transaction_metadata)
 
     ## Saving Transaction to Json
     transaction_logger.saveTransaction(income_transactions)
