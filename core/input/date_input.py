@@ -11,7 +11,7 @@ red = "\033[31m"
 reset = "\033[0m"
 
 
-def transaction_date_logger():
+def txn_DateRecorder():
     print(
         """\nWhen did this transaction occur?
  [1] Today 
@@ -22,8 +22,8 @@ def transaction_date_logger():
     #  Processing and validating user's choice
     user_input = input("Please provide an option: ").strip(" ")
     while user_input not in ["1", "2", "3"]:
-        print(f"\033[31mAttention User! Invalid Input, try again!")
-        user_input = input("Please provide an option b/w 1 & 2: ")
+        print(f"\033[31mAttention User! Invalid Input, try again! \033[0m")
+        user_input = input("Please provide an option b/w 1 & 3: ")
 
     #  Making decision on user's choice for determining date for trnaction
     if user_input == "1":  # gives us today's date
