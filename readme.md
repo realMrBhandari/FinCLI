@@ -34,10 +34,10 @@ Detailed usage instructions for FinCLI can be found here:
 - Transaction history viewer
 - Net-worth and balance calculation across accounts
 - REPL loop for keeping FinCLI session active
+- Expense recording functionality
 
 ## Planned Features:
 
-- Expense recording functionality
 - Monthly spending summaries
 - SQL database integration
 - Terminal User Interface (TUI)

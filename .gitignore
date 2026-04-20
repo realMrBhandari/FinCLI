@@ -8,3 +8,4 @@ __pycache__/
 
 # ! Specifically for individual files
 data/transactions.json
+financial_dashboard.py

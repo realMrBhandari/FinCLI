@@ -1,6 +1,4 @@
 import json
-
-# import csv
 from tabulate import tabulate
 from datetime import datetime, timedelta
 

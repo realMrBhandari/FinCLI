@@ -38,7 +38,7 @@ def financial_overview_generator():
     unique_bank_accounts = set()
     for outer_key in transactions:
         for inner_key in transactions[outer_key]:
-            if inner_key == "transaction_location":
+            if inner_key == "transaction_bank_account":
                 unique_bank_accounts.add(transactions[outer_key][inner_key])
 
     # ? creating a dynamic dictionary with each bank account as a key using set
@@ -48,7 +48,7 @@ def financial_overview_generator():
 
     # ? For calculating balance for each account
     for lv1_key in transactions:
-        bank_name = transactions[lv1_key]["transaction_location"]
+        bank_name = transactions[lv1_key]["transaction_bank_account"]
         bank_txn_amount = transactions[lv1_key]["transaction_amount"]
         bank_txn_type = transactions[lv1_key]["transaction_type"]
         if bank_txn_type == "CREDIT":
