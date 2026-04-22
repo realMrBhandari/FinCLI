@@ -1,30 +1,21 @@
-import utilities.transaction_logger as transaction_logger
-import utilities.txn_categories as categories_of_transaction
+# ! All input modules from core/input
+from core.input.amount_input import txn_AmtRecorder
+from core.input.transaction_type_input import get_txn_type
+from core.input.category_selector import get_transaction_category
 from core.input.date_input import txn_DateRecorder
 from core.input.metadata_input import txn_MetadataRecorder
-from core.input.amount_input import txn_AmtRecorder
-import ui.section_banner
 
 
-def transaction_processor():
-    transactions_params = {}
+# TODO [1]: modify txn_metadata recorder for SQLite
+# TODO [2]: fix function naming develop a pattern
 
-    # ! transaction side
-    print(
-        "What would you like to record? \n[1] Income transaction \n[2] Expense transaction"
-    )
-    txn_type_choice = input("Select an option 1 - 2: ")
-    while txn_type_choice not in ["1", "2"]:
-        print("\033[31mInvalid input. Try again:\033[0m\t")
-        txn_type_choice = input("Select an option 1 - 2: ")
+# ?Basic Flow of programme:  [transaction amount] --> [type of transaction (income/expense?)] --> [transaction category] --> [transaction date] --> [transaction metadata (account, mode, node)]
+txn_amount = txn_AmtRecorder()
 
-    if txn_type_choice == "1":
-        ui.section_banner.heading_banner("INCOME")
-    else:
-        ui.section_banner.heading_banner("EXPENSE")
+txn_type = get_txn_type()
 
-    #! transaction amt recording functionality
-    txn_amt = txn_AmtRecorder()
+txn_category = get_transaction_category(int(txn_type))
 
-    #! txn category recording
-    categories_of_transaction
+txn_date = txn_DateRecorder()
+
+txn_metadata = txn_MetadataRecorder()
