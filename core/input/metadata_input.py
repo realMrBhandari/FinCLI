@@ -38,7 +38,4 @@ def txn_MetadataRecorder():
         )
         transaction_note = input("Add a note to describe your transaction: ")
 
-    metadata["transaction_mode"] = transaction_mode
-    metadata["transaction_bank_account"] = transaction_bank_account
-    metadata["transaction_note"] = transaction_note
-    return metadata
+    return transaction_mode, transaction_bank_account, transaction_note
