@@ -27,7 +27,7 @@ def txn_DateRecorder():
 
     #  Making decision on user's choice for determining date for trnaction
     if user_input == "1":  # gives us today's date
-        transaction_date = datetime.now().date().strftime("%Y_%m_%d")
+        transaction_date = datetime.now().date().strftime("%Y-%m-%d")
 
     elif user_input == "2":
         current_day = date.today().day
@@ -38,7 +38,7 @@ def txn_DateRecorder():
             else:
                 print(f"{red}Provided date {earlier_date} excceds current date{reset}")
             earlier_date = input("Please provide tranasction date: ")
-        transaction_date = f"{datetime.now().strftime("%Y_%m")}_{earlier_date.zfill(2)}"
+        transaction_date = f"{datetime.now().strftime("%Y-%m")}-{earlier_date.zfill(2)}"
 
     else:  # will let user's manually provide date
         # //  Transaction Year -> year, ya to current year ke equal ho ya fir current year se lesser ho, agar input year current se jayda hai to loop karo taki correct year mil sake
@@ -164,5 +164,5 @@ def txn_DateRecorder():
                         transaction_date_day = input(
                             "Please provide a valid Transaction Day: "
                         ).strip(" ")
-        transaction_date = f"{transaction_date_year}_{transaction_date_month.zfill(2)}_{transaction_date_day.zfill(2)}"
+        transaction_date = f"{transaction_date_year}-{transaction_date_month.zfill(2)}-{transaction_date_day.zfill(2)}"
     return transaction_date
