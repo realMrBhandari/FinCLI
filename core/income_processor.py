@@ -2,13 +2,13 @@ import utilities.transaction_logger as transaction_logger
 from core.input.date_input import txn_DateRecorder
 from core.input.metadata_input import txn_MetadataRecorder
 from core.input.amount_input import txn_AmtRecorder
-import ui.section_banner
 
 
 def income_recorder():
 
     income_transactions = {}
-    ui.section_banner.heading_banner("INCOME")
+
+    print("""======================  INCOME ======================""")
 
     ## Income recording section
     income_amount = txn_AmtRecorder()

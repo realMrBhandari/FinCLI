@@ -18,4 +18,6 @@ txn_category = get_transaction_category(int(txn_type))
 
 txn_date = txn_DateRecorder()
 
-txn_metadata = txn_MetadataRecorder()
+txn_metadata = (
+    txn_MetadataRecorder()
+)  # ? returning a tuple containing metadata as (mode, account, note)

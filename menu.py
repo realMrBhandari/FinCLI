@@ -4,7 +4,6 @@ import core.transaction_summary as transaction_summary
 import core.balance_overviw as balance_overviw
 import core.monthly_spends as monthly_spends
 import sys
-import ui.ui_menu as ui_menu
 
 menu = """\033[1;33m===========================================================================
                               FinCLI Finance Menu

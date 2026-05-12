@@ -1,6 +1,8 @@
 # ! Specifically for folders
 sandbox/*
 exports/*
+database/*
+.idea/*
 
 # ! Specifically for .typefiles
 __pycache__/
