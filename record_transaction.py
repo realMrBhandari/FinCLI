@@ -5,8 +5,6 @@ from core.input.category_selector import get_transaction_category
 from core.input.date_input import txn_DateRecorder
 from core.input.metadata_input import txn_MetadataRecorder
 
-
-# TODO [1]: modify txn_metadata recorder for SQLite
 # TODO [2]: fix function naming develop a pattern
 
 # ?Basic Flow of programme:  [transaction amount] --> [type of transaction (income/expense?)] --> [transaction category] --> [transaction date] --> [transaction metadata (account, mode, node)]
@@ -18,6 +16,24 @@ txn_category = get_transaction_category(int(txn_type))
 
 txn_date = txn_DateRecorder()
 
-txn_metadata = (
+
+txn_mode, txn_account, txn_note = (
     txn_MetadataRecorder()
-)  # ? returning a tuple containing metadata as (mode, account, note)
+)  # ? this function returns tuple so unpacking tuple
+
+
+# ? using kwargs wrapping the whole transaction data into dictionary
+def save_transaction(**kwargs):
+    return kwargs
+
+
+record = save_transaction(
+    amt=txn_amount,
+    type="CREDIT" if txn_type == "1" else "DEBIT",
+    category=txn_category,
+    mode=txn_mode,
+    account=txn_account,
+    note=txn_note,
+)
+
+print(record)
