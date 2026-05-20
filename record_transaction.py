@@ -4,6 +4,7 @@ from core.input.transaction_type_input import get_txn_type
 from core.input.category_selector import get_transaction_category
 from core.input.date_input import txn_DateRecorder
 from core.input.metadata_input import txn_MetadataRecorder
+from tabulate import tabulate
 
 # TODO [2]: fix function naming develop a pattern
 
@@ -27,13 +28,26 @@ def save_transaction(**kwargs):
     return kwargs
 
 
-record = save_transaction(
-    amt=txn_amount,
-    type="CREDIT" if txn_type == "1" else "DEBIT",
-    category=txn_category,
-    mode=txn_mode,
-    account=txn_account,
-    note=txn_note,
-)
+table = [
+    [
+        txn_date,
+        "\033[32mCREDIT\033[0m" if txn_type == "1" else "\033[31mDEBIT\033[0m",
+        (
+            f"\033[32m{txn_amount}\033[0m"
+            if txn_type == "1"
+            else f"\033[31m{txn_amount}\033[0m"
+        ),
+        txn_category,
+        txn_mode,
+        txn_account,
+        txn_note,
+    ]
+]
 
-print(record)
+print(
+    tabulate(
+        table,
+        headers=["Date", "Type", "Amt", "Category", "Mode", "Account", "Note"],
+        tablefmt="rounded_outline",
+    )
+)
