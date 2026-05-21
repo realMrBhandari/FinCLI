@@ -1,9 +1,22 @@
+# ? core modules
 import core.transaction_summary as transaction_summary
 import core.balance_overviw as balance_overviw
 import core.monthly_spends as monthly_spends
-import sys
 from core.record_transaction import record_transactions
 
+# ? Database realted module
+from database.setup_db import create_database
+
+# ? 3rd party modules
+from pathlib import Path
+import sys
+
+# ! following code will create database if it does not exist
+file_path = Path("database/fincil.db")
+if not file_path.is_file():
+    create_database()
+
+# # Menu starts from here
 menu = """\033[1;33m===========================================================================
                               FinCLI Finance Menu
 ===========================================================================\n [1] Record Transactions\n [2] View Transactions \n [3] Balance Overview \n [4] Monthly Sepnding Summary \n [5] Exit \n===========================================================================\033[0m \n"""
@@ -30,10 +43,9 @@ def trigger_action(trigger):
 def repl():
     while True:
         # ? Printing FinCLI menu
-        # ui_menu.rich_fincli_menu()  ? will add later when UI will be implemented right now nelow code will be used
         print(menu)
 
-        # ? REPL Core Logic
+        # ? REPL Core Logics
         navigate = input("Pick a choice (1 - 5):\t")
         while navigate not in ["1", "2", "3", "4", "5"]:
             navigate = input(
