@@ -17,7 +17,7 @@ def get_txn_type():
         )
         if txn_type == "1"
         else print(
-            "\033[1;31m ========================== Income Transaction Recording ==========================\033[0m\n"
+            "\033[1;31m ========================== Expense Transaction Recording ==========================\033[0m\n"
         )
     )
 
