@@ -1,8 +1,6 @@
 # ? core modules
-import core.transaction_summary as transaction_summary
-import core.balance_overviw as balance_overviw
-import core.monthly_spends as monthly_spends
-from core.record_transaction import record_transactions
+from core.add_transactions import record_transaction
+from core.transaction_history import display_transactions
 
 # ? Database realted module
 from database.setup_db import create_database
@@ -25,14 +23,14 @@ menu = """\033[1;33m============================================================
 # ! action dispatcher, for triggering appropriate functionality based on user's choice
 def trigger_action(trigger):
     if trigger == "1":
-        record_transactions()
+        record_transaction()
     elif trigger == "2":
-        transaction_summary.show_transaction_statement()
+        display_transactions()
     elif trigger == "3":
-        balance_overviw.financial_overview_generator()
+        print("Under Development")
     elif trigger == "4":
-        monthly_spends.montly_spends()
-    elif trigger == "5":
+        print("Under Development")
+    elif trigger == "5" or "exit" or "EXIT":
         print("Exiting the programme.....")
         sys.exit()
 
@@ -47,7 +45,7 @@ def repl():
 
         # ? REPL Core Logics
         navigate = input("Pick a choice (1 - 5):\t")
-        while navigate not in ["1", "2", "3", "4", "5"]:
+        while navigate not in ["1", "2", "3", "4", "5", "exit", "EXIT"]:
             navigate = input(
                 f"\033[31;1mYour choice {navigate} was invalid! Try Again: \033[0m"
             )
