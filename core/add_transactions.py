@@ -1,26 +1,23 @@
 # ! All input modules from core/input
-from core.input.amount_input import txn_AmtRecorder
-from core.input.transaction_type_input import get_txn_type
-from core.input.category_selector import get_transaction_category
-from core.input.date_input import txn_DateRecorder
-from core.input.metadata_input import txn_MetadataRecorder
 from database.insert_statement import append_transaction
+from utilities import cli_input_helpers as help_input
 
 # TODO [2]: fix function naming develop a pattern
+# TODO [3]: FIX QUERIES REQUIRING COMMIT VS NON COMMIT
 
 
-def record_transactions():
+def record_transaction():
     # ?Basic Flow of programme:  [transaction amount] --> [type of transaction (income/expense?)] --> [transaction category] --> [transaction date] --> [transaction metadata (account, mode, node)]
-    transaction_amount = txn_AmtRecorder()
+    transaction_amount = help_input.amount_processor()
 
-    transaction_type = get_txn_type()
+    transaction_type = help_input.transaction_side()
 
-    transaction_category = get_transaction_category(int(transaction_type))
+    transaction_category = help_input.map_transaction_category(int(transaction_type))
 
-    transaction_date = txn_DateRecorder()
+    transaction_date = help_input.ask_transaction_date()
 
     transaction_mode, transaction_account, transaction_note = (
-        txn_MetadataRecorder()
+        help_input.get_transaction_metadata()
     )  # ? this function returns tuple so unpacking tuple
 
     append_transaction(

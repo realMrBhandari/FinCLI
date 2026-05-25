@@ -38,7 +38,15 @@ def append_transaction(
     print(
         tabulate(
             [txn_latest],
-            headers=["Date", "Type", "Amt", "Category", "Mode", "Account", "Note"],
-            tablefmt="rounded_outline",
+            headers=[
+                "Date",
+                "Type",
+                "Amt",
+                "Category",
+                "Mode",
+                "Account",
+                "Description",
+            ],
+            tablefmt="heavy_grid",
         )
     )
